@@ -187,9 +187,8 @@ func readTcp2Ws(uuid string) bool {
 				}
 				// 客户端 tcp上次重连没有成功 保存并重连 服务端不会设置成nil不会进这里
 				saveErrorBuf(conn, buf, length)
-				log.Print("try reconnect to ws ", uuid)
-				go runClient(nil, uuid)
-				continue
+				log.Print("try reconnect to ws (DONT RECONNECT)", uuid)
+				return false
 			}
 			if err = wsConn.WriteMessage(msgType, buf[:length]); err != nil {
 				log.Print(uuid, " ws write err: ", err)
