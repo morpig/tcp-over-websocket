@@ -96,7 +96,7 @@ func dialNewWs(uuid string) bool {
 	// println("tcpAddr ", tcpAddr, " wsAddr ", wsAddr, " wsAddrIp ", wsAddrIp, " wsAddrPort ", wsAddrPort)
 	wsConn, _, err := dialer.Dial(wsAddr, nil)
 	if err != nil {
-		log.Print("connect to ws err: ", err)
+		log.Print(uuid, " connect to ws err: ", err)
 		return false
 	}
 	// send uuid
@@ -187,7 +187,7 @@ func readTcp2Ws(uuid string) bool {
 				}
 				// 客户端 tcp上次重连没有成功 保存并重连 服务端不会设置成nil不会进这里
 				saveErrorBuf(conn, buf, length)
-				log.Print("try reconnect to ws (DONT RECONNECT)", uuid)
+				log.Print(uuid, " try reconnect to ws (DONT RECONNECT)")
 				return false
 			}
 			if err = wsConn.WriteMessage(msgType, buf[:length]); err != nil {
@@ -446,7 +446,7 @@ func runClient(tcpConn net.Conn, uuid string) {
 		if tcpConn != nil {
 			tcpConn.Close()
 		}
-		log.Print("reconnect to ws fail")
+		log.Print(uuid, " reconnect to ws fail")
 	}
 }
 
