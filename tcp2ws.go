@@ -193,7 +193,7 @@ func readTcp2Ws(uuid string) bool {
 			}
 			if err = wsConn.WriteMessage(msgType, buf[:length]); err != nil {
 				log.Print(uuid, " ws write err: ", err)
-				// tcpConn.Close()
+				tcpConn.Close()
 				wsConn.Close()
 				saveErrorBuf(conn, buf, length)
 				// 此处无需中断 等着新的wsConn 或是被 断开连接 / 回收 即可
