@@ -444,6 +444,7 @@ func runClient(tcpConn net.Conn, uuid string) {
 			go readTcp2Ws(uuid)
 		}
 	} else {
+		tcpConn.close()
 		log.Print("reconnect to ws fail")
 	}
 }
