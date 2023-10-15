@@ -774,11 +774,10 @@ func main() {
 			time.Sleep(2 * 60 * time.Second)
 			nowTimeCut := time.Now().Unix() - 2*60
 			// check ws
-			for k, i := range connMap {
+			/*for k, i := range connMap {
 				// 如果超过2分钟没有收到消息，才发心跳，避免读写冲突
 				if i.t < nowTimeCut {
-					/*
-										if i.isUdp {
+					if i.isUdp {
 						// udp不需要心跳 超时就关闭
 						log.Print(i.uuid, " udp timeout close")
 						deleteConn(k)
@@ -786,9 +785,9 @@ func main() {
 						log.Print(i.uuid, " tcp timeout close")
 						i.wsConn.Close()
 						deleteConn(k)
-					}*/
+					}
 				}
-			}
+			}*/
 		} else {
 			// 按 ctrl + c 退出，会阻塞
 			c := make(chan os.Signal, 1)
