@@ -770,7 +770,7 @@ func main() {
 	}
 	for {
 		if isServer {
-			// 心跳间隔2分钟
+			/*// 心跳间隔2分钟
 			time.Sleep(2 * 60 * time.Second)
 			nowTimeCut := time.Now().Unix() - 2*60
 			// check ws
