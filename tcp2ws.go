@@ -232,7 +232,11 @@ func readWs2Tcp(uuid string) bool {
 			if conn, haskey := getConn(uuid); haskey && !conn.del {
 				// 外部干涉导致中断 重连ws
 				log.Print(uuid, " ws read err: ", err)
-				return true
+				if (tcpConn != nil) {
+					log.Print(uuid, " closing tcp due to ws error")
+					tcpConn.Close()
+				}
+				return false
 			}
 			return false
 		}
